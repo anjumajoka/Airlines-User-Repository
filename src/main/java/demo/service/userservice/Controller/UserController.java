@@ -1,19 +1,14 @@
-package Controller;
+package demo.service.userservice.Controller;
 
-import model.User;
+import demo.service.userservice.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import service.UserService;
+import org.springframework.web.bind.annotation.*;
+import demo.service.userservice.service.UserService;
 
-import javax.persistence.Id;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
@@ -26,13 +21,19 @@ public class UserController {
         return ResponseEntity.ok(responseEntity);
     }
 
-    @GetMapping
+    @GetMapping("/allUser")
     public ResponseEntity<List<User>> getAllUser() {
         List<User> responseEntities = userService.getAllUser();
         if (responseEntities.isEmpty()) {
             ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(responseEntities);
+    }
+
+    @PostMapping
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User responseEntity = userService.createUser(user);
+        return ResponseEntity.ok(responseEntity);
     }
 
     @DeleteMapping

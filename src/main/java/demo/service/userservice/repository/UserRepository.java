@@ -1,6 +1,6 @@
-package repository;
+package demo.service.userservice.repository;
 
-import model.User;
+import demo.service.userservice.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
