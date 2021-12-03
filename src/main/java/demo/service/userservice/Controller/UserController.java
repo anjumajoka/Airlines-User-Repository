@@ -27,13 +27,12 @@ public class UserController {
     @GetMapping("/reservations")
     public Object getReservations(@RequestParam Long personid)
     {
-        RestTemplate restTemplate = new RestTemplate();
         Object result = restTemplate.getForObject(uri+personid, Object.class);
         return result;
     }
 
 
-    @GetMapping
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id) {
         User responseEntity = userService.getUser(id);
         return ResponseEntity.ok(responseEntity);
@@ -54,7 +53,7 @@ public class UserController {
         return ResponseEntity.ok(responseEntity);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable Long id) {
         User responseEntity = userService.getUser(id);
         userService.deleteUser(id);
