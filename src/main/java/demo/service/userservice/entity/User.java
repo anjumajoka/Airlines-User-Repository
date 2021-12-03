@@ -1,4 +1,4 @@
-package demo.service.userservice.model;
+package demo.service.userservice.entity;
 
 import lombok.*;
 

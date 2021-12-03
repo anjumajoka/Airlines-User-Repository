@@ -1,10 +1,13 @@
 package demo.service.userservice.Controller;
 
-import demo.service.userservice.model.User;
+import demo.service.userservice.entity.User;
+import demo.service.userservice.model.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import demo.service.userservice.service.UserService;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -14,6 +17,21 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Value("${reservation.url}")
+    private String uri;
+
+    @GetMapping("/reservations")
+    public Object getReservations(@RequestParam Long personid)
+    {
+        RestTemplate restTemplate = new RestTemplate();
+        Object result = restTemplate.getForObject(uri+personid, Object.class);
+        return result;
+    }
+
 
     @GetMapping
     public ResponseEntity<User> getUser(@PathVariable Long id) {
