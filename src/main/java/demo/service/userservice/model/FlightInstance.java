@@ -12,29 +12,14 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Entity
-@Data
-@NoArgsConstructor
 public class FlightInstance implements Serializable {
-    @Id
-    @GeneratedValue
     private long id;
 
-    @NotNull
     private LocalTime departureTime;
-    @NotNull
     private LocalTime arrivalTime;
-    @NotNull
-    @Future
     private LocalDate departureDate;
-    @NotNull
-    @Future
     private LocalDate arrivalDate;
-
-    @NotNull
     private Long flightId;
-
-    @NotNull
     private double amount;
 
 }

@@ -1,7 +1,6 @@
-package demo.service.userservice.Controller;
+package demo.service.userservice.controller;
 
 import demo.service.userservice.entity.User;
-import demo.service.userservice.model.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +32,7 @@ public class UserController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable Long id) {
+    public ResponseEntity<?> getUser(@PathVariable Long id) {
         User responseEntity = userService.getUser(id);
         return ResponseEntity.ok(responseEntity);
     }
@@ -54,7 +53,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         User responseEntity = userService.getUser(id);
         userService.deleteUser(id);
         return ResponseEntity.ok(responseEntity);
