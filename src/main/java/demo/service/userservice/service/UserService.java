@@ -1,11 +1,12 @@
 package demo.service.userservice.service;
 
-import demo.service.userservice.model.User;
+import demo.service.userservice.entity.User;
 import demo.service.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -14,11 +15,20 @@ public class UserService {
     private UserRepository userRepository;
 
     public User getUser(Long id) {
+        userRepository.findUsersByFirstName("tset");
         return userRepository.getById(id);
     }
 
     public List<User> getAllUser() {
-        return userRepository.findAll();
+
+
+        List<User> all = userRepository.findAll();
+        return all.stream().map(user -> {
+            user.setLastName(user.getLastName().toUpperCase());
+            return  user;
+        }).collect(Collectors.toList());
+
+
     }
 
     public void deleteUser(Long id) {
@@ -26,6 +36,8 @@ public class UserService {
     }
 
     public User createUser(User user) {
+        String fname =  user.getFirstName();
+        user.setFirstName(fname.toUpperCase());
         return userRepository.save(user);
     }
 }

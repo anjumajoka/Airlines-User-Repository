@@ -1,4 +1,4 @@
-package demo.service.userservice.model;
+package demo.service.userservice.entity;
 
 import lombok.*;
 
@@ -21,5 +21,6 @@ public class User {
     private String firstName;
 
     private String lastName;
+    private String address;
 
 }
